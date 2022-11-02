@@ -5,9 +5,9 @@ import (
 	"lab2/pkg/utils"
 )
 
-func ReadFromFile(fileName string) string {
+func ReadFromFile(fileName string) []byte {
 	raw_content, error := ioutil.ReadFile(fileName)
 	utils.CheckError(error)
 
-	return string(raw_content)
+	return raw_content
 }

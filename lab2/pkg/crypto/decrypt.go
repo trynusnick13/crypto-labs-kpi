@@ -3,14 +3,16 @@ package crypto
 import (
 	"crypto/aes"
 	"crypto/cipher"
+	"lab2/pkg/files"
 	"lab2/pkg/utils"
 )
 
 // AES decryption mechanism
-func Decrypt(key []byte, encryptedText []byte) string {
+func Decrypt(key []byte, inputFileName string) string {
 	cipher, err := aes.NewCipher(key)
 	utils.CheckError(err)
 
+	encryptedText := files.ReadFromFile(inputFileName)
 	plainText := make([]byte, 0, len(encryptedText))
 	for offset := 0; offset < len(encryptedText); offset += BlockSize {
 		rightLimit := offset + BlockSize
